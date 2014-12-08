@@ -1,0 +1,25 @@
+{
+  "name": "Sweet DB",
+  "version": "0.0.1",
+  "authors": [
+    "Kaylee Elúvian <Kaylee.Eluvian@hotmail.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "GPL2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "underscore": "~1.7.0",
+    "requirejs": "~2.1.15",
+    "domReady": "~2.0.1",
+    "bootstrap": "~3.3.1"
+  }
+}
