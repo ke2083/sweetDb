@@ -32,12 +32,14 @@ grunt.initConfig({
   },
   copy:{
   	build:{
-  		files:[
-  		  {expand: true, src: ['../dist/*.*'], dest: '../demo/'}	
-  		]
+  		expand: true,
+  		cwd: '../',
+		src: ['dist/*.js', 'dist/*.map'],
+		dest: '../demo/',
+		flatten: true,
+		filter: 'isFile'
   	}
   }
-
 });
 
 
