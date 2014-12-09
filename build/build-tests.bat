@@ -1,5 +1,5 @@
 @echo off
-pushd ..\demo
+pushd ..\tests
 call npm install 
 call bower install 
 call grunt build 

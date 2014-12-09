@@ -1,6 +1,7 @@
 bower_components
 node_modules
 dist
-demo/sweetdb.js
-demo/bootstrapper.js
+tests/sweetdb.js
+tests/sweetdb.js.map
+tests/bootstrapper.js
 *.log

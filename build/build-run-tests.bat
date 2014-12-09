@@ -1,5 +1,5 @@
 @echo off
 start /WAIT build-all
-pushd ..\demo
+pushd ..\tests
 start npm start
 popd
