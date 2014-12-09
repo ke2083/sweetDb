@@ -1,14 +1,18 @@
-define('sweetdb', ['./modules/modules'], function(modules){
+define('sweetdb', ['./modules/database/main'], function(Db){
   'use strict';
+ 
   return {
-
     init: function(){
 
       console.log('Starting SweetDb...');
 
-      _.each(modules, function(module){
-        module.init();
-      });
+      return {
+         create: function(dbName){
+           var dataBase = new Db(dbName);
+           return dataBase;
+         }
+
+      };
 
     }
 
