@@ -2,9 +2,19 @@
 <html>
   <head>
     <link rel=stylesheet type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel=stylesheet type="text/css" href="/bower_components/mocha/mocha.css" />
+    <style>
+		.progress{height: auto;}
+    </style>
+    <script type="text/javascript" src="/bootstrapper.js" data-main="config.js" ></script>
+	<script>mocha.setup('bdd');</script>
+	<script src="test/test.create.db.js"></script>
   </head>
   <body class="container-fluid">
-		<h1>Demo</h1>
-		<script type="text/javascript" src="/bootstrapper.js" data-main="config" ></script>
+		<h1>SweetDB</h1>
+		<h2>Tests</h2>
+		<div class="row">
+		<div id="mocha" class="col-md-12"></div>
+		</div>
   </body>
 </html>

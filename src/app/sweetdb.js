@@ -1,7 +1,5 @@
-'use strict';
-
 define('sweetdb', ['./modules/modules'], function(modules){
-
+  'use strict';
   return {
 
     init: function(){

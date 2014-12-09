@@ -23,7 +23,7 @@ grunt.initConfig({
 		inlineText: true,
 		removeCombined: true,
 		preserveLicenseComments: false,
-		optimizeAllPluginResources: false,
+		optimizeAllPluginResources: true,
 		findNestedDependencies: true
       }
 
@@ -39,12 +39,34 @@ grunt.initConfig({
 		flatten: true,
 		filter: 'isFile'
   	}
+  },
+  watch:{
+     scripts: {
+       files: ['**/*.js'],
+       tasks: ['jshint','requirejs', 'copy'],
+       options: {
+         spawn: false,
+       }
+     }
+  },
+  jshint:{
+  	src:['app/**/*.js'],
+  	options:{
+  		globals: {
+  		   'console': false,
+  		   'define': false,
+  		   '_': false,
+  		   'require': false
+  	   }
+  	}
   }
 });
 
 
 grunt.loadNpmTasks('grunt-contrib-requirejs');
 grunt.loadNpmTasks('grunt-contrib-copy');
-grunt.registerTask('build', ['requirejs', 'copy']);
+grunt.loadNpmTasks('grunt-contrib-watch');
+grunt.loadNpmTasks('grunt-contrib-jshint');
+grunt.registerTask('build', ['jshint', 'requirejs', 'copy']);
 
 };

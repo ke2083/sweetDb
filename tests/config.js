@@ -3,7 +3,13 @@ requirejs.config({
 	baseUrl: '.',
 	paths: {
 		'domReady': './bower_components/domReady/domReady',
-		'sweetdb': './sweetdb'
+		'sweetdb': 'sweetdb',
+		'underscore': './bootstrapper'
+	},
+	shim: {
+		'underscore': {
+			exports: '_'
+		}
 	}
 
 
@@ -11,6 +17,7 @@ requirejs.config({
 
 require(['domReady!', 'sweetdb'], function(dr, sweetdb){
 
-  sweetdb.init();
+  window.sweetDb = sweetdb;
+  mocha.run();
 
 });

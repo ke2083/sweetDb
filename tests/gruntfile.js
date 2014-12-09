@@ -5,9 +5,10 @@ grunt.initConfig({
   	build:{
   		files:{
   			'bootstrapper.js': [
-  			'bower_components/underscore/underscore.js', 
-  			'bower_components/requirejs/require.js', 
-  			'bower_components/jquery/dist/jquery.js'
+            'bower_components/underscore/underscore.js',
+            'bower_components/should/should.js',
+            'bower_components/mocha/mocha.js',
+            'bower_components/requirejs/require.js'
   			]
   		}
   	}
