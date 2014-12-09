@@ -35,7 +35,7 @@ grunt.initConfig({
   		expand: true,
   		cwd: '../',
 		src: ['dist/*.js', 'dist/*.map'],
-		dest: '../demo/',
+		dest: '../tests/',
 		flatten: true,
 		filter: 'isFile'
   	}

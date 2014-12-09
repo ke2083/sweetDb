@@ -1,4 +1,4 @@
 @echo off
-call build-demo
+call build-tests
 call build-src
 exit
