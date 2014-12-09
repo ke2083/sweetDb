@@ -2,7 +2,7 @@
   "name": "SweetDb",
   "version": "0.0.1",
   "description": "",
-  "repository": "",
+  "repository": "http://www.example.com",
   "readme": "../README.md",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,8 @@
   "author": "Kaylee Eluvian",
   "license": "GPL2",
   "devDependencies": {
-    "local-web-server": "^0.5.15"
+    "local-web-server": "^0.5.15",
+    "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^0.6.0"
   }
 }

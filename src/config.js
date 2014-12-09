@@ -4,9 +4,3 @@ requirejs.config({
 
 
 });
-
-require(['sweetdb'], function(sweetdb){
-
-  sweetdb.init();
-
-});

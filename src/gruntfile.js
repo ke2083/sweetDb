@@ -33,7 +33,7 @@ grunt.initConfig({
   copy:{
   	build:{
   		files:[
-  		  {expand: false, src: ['../dist/*.js'], dest: '../demo/'}	
+  		  {expand: true, src: ['../dist/*.*'], dest: '../demo/'}	
   		]
   	}
   }
