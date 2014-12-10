@@ -2,7 +2,7 @@ define(['../table/main', '../query/main'], function(Table, Query){
 
   'use strict';
   
-	return function(dbName){
+	return function(dbName, storage){
 
 			if (dbName === null || dbName === '' || typeof(dbName) !== 'string'){
 				throw new Error("A database cannot be created with an empty name.");
@@ -12,6 +12,7 @@ define(['../table/main', '../query/main'], function(Table, Query){
 				var self = this;
 				var data = [];
 				self.name = dbName;
+				var store = storage||sessionStorage;
 				self.createTable = function(tName){
 					var t = new Table(tName);
 					data.push(t);
@@ -33,7 +34,7 @@ define(['../table/main', '../query/main'], function(Table, Query){
 				};
 
 				function save(){
-					sessionStorage.setItem('sweetDb.' + self.name, JSON.stringify(data));
+					store.setItem('sweetDb.' + self.name, JSON.stringify(data));
 				}
 
 				// Save this database on creation.
