@@ -1,8 +1,14 @@
-Requires:
+# SweetDB
 
-* underscore
+SweetDB is a Javascript-based database.  It's designed to be cross-browser compatible, ie it does not use WebDB or IndexDB.  By default it will use sessionStorage, but you can provide it with any backing store you like :)
 
-## Syntax
+It's built as an AMD module, so you'll need to load it with [requirejs](http://requirejs.org).
+
+## Requirements
+
+* [underscore.js](http://underscorejs.org)
+
+## How to use it
 
 ### Create a new database
 
