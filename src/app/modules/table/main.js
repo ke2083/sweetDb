@@ -3,10 +3,10 @@ define(function(){
 
 	return function(tableName){
 		var self = this;
-		self.store = [];
+		self.rows = [];
 		self.name = tableName;
 	 	self.add = function(key, value){
-			self.store.push({id: key, data: value});
+			self.rows.push({id: key, data: value});
 	 	};
 	};
 

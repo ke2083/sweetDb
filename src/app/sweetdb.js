@@ -4,10 +4,8 @@ define('sweetdb', ['./modules/database/main'], function(Db){
   return {
     init: function(){
 
-      console.log('Starting SweetDb...');
-
       return {
-         create: function(dbName){
+         create: function(dbName, store){
            var dataBase = new Db(dbName);
            return dataBase;
          }

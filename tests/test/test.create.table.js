@@ -11,6 +11,8 @@ describe('Table', function(){
 			t.add(1, {name: 'test'});
 			var r = db.from('testTable').select();
 			r.length.should.eql(1);
+			r[0].id.should.eql(1);
+			r[0].data.name.should.eql('test');
 		});
 
 	});

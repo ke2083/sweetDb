@@ -31,12 +31,20 @@ grunt.initConfig({
 
   },
   copy:{
-  	build:{
+  	minified:{
   		expand: true,
   		cwd: '../',
 		src: ['dist/*.js', 'dist/*.map'],
 		dest: '../tests/',
 		flatten: true,
+		filter: 'isFile'
+  	},
+  	src:{
+		expand: true,
+  		cwd: './app',
+		src: 'modules/**/*.js',
+		dest: '../tests/',
+		flatten: false,
 		filter: 'isFile'
   	}
   },
@@ -67,6 +75,6 @@ grunt.loadNpmTasks('grunt-contrib-requirejs');
 grunt.loadNpmTasks('grunt-contrib-copy');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-jshint');
-grunt.registerTask('build', ['jshint', 'requirejs', 'copy']);
+grunt.registerTask('build', ['jshint', 'requirejs', 'copy:minified', 'copy:src']);
 
 };
