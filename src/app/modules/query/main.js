@@ -4,13 +4,28 @@ define(function(){
 
 	return function(table){
 		var self = this;
+		self.data = table;
+
 		self.select = function(query){
+			if (query === null || query === undefined) return self.data.rows;
 
-			if (query === null) return table.rows;
+			var res  = [];
+			for(var n = 0; n<self.data.rows.length; n++){
+				if (query(self.data.rows[n].document) === true){
+					res.push(self.data.rows[n]);
+				}
+			}
 
-			var matches = _.filter(table.rows, query);
-			return matches;
+			return res;
 		};	
+
+		self.find = function(key){
+			for(var n = 0; n < self.data.rows.length; n++){
+				if (self.data.rows[n].key === key) return self.data.rows[n].document;
+			}
+
+			return null;
+		};
 	};
 
 });

@@ -13,6 +13,15 @@ describe('Query', function(){
 
 	});
 
+	describe('#find()', function(){
+		it('should return the document with the specified ID', function(){
+			var d = db.from('myTestTable').find(3);
+			d.name.should.eql('Snork');
+			d.age.should.eql(21);
+		});
+
+	});
+
 	describe('#select()', function(){
 
 		it('should return all the rows in the table', function(){
@@ -23,7 +32,7 @@ describe('Query', function(){
 		it('should return all the rows that match the query', function(){
 
 			var results = db.from('myTestTable').select(function(i){
-				return i.data.age === 21;
+				return i.age === 21;
 			});
 
 			results.length.should.eql(2);

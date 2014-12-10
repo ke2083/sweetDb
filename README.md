@@ -4,10 +4,6 @@ SweetDB is a Javascript-based database.  It's designed to be cross-browser compa
 
 It's built as an AMD module, so you'll need to load it with [requirejs](http://requirejs.org).
 
-## Requirements
-
-* [underscore.js](http://underscorejs.org)
-
 ## How to use it
 
 ### Create a new database

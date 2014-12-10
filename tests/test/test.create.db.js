@@ -72,6 +72,19 @@ describe('Database', function(){
 			(i === null).should.be.true;
 		});
 
+		it('should open the existing database if available', function(){		
+			var dbms = window.sweetDb.init();
+			var db = dbms.create('testDb');
+			var t = db.createTable('testTable');
+			t.add(1, {name: 'New'});
+			db.saveChanges();
+
+			var dbms2 = window.sweetDb.init();
+			db2 = dbms.create('testDb');
+			var r = db2.from('testTable').select();
+			r.length.should.eql(1);
+		});
+
 		after(function(){
 			sessionStorage.removeItem('sweetDb.testDb');
 			localStorage.removeItem('sweetDb.testDb');

@@ -4,27 +4,27 @@ define(['../table/main', '../query/main'], function(Table, Query){
   
 	return function(dbName, storage){
 
-			if (dbName === null || dbName === '' || typeof(dbName) !== 'string'){
-				throw new Error("A database cannot be created with an empty name.");
-			}
+				if (dbName === null || dbName === '' || typeof(dbName) !== 'string'){
+					throw new Error("A database cannot be created with an empty name.");
+				}
 
-			var Db = function(){
 				var self = this;
-				var data = [];
+				self.tables = [];
 				self.name = dbName;
-				var store = storage||sessionStorage;
+				self.store = storage||sessionStorage;
+
 				self.createTable = function(tName){
 					var t = new Table(tName);
-					data.push(t);
+					self.tables.push(t);
 					return t;
 				};
 
 				self.openTable = function(tName){
-					var match = _.find(data, function(d){
-						return d.name === tName;
-					});
+					for(var n = 0; n < self.tables.length; n++){
+						if (self.tables[n].name === tName) return self.tables[n];
+					}
 
-					return match;
+					throw new Error('Table not found.');
 				};
 
 				self.from = function(tName){
@@ -33,14 +33,38 @@ define(['../table/main', '../query/main'], function(Table, Query){
 					return q;
 				};
 
+				self.saveChanges = function(){
+					save();	
+				};
+
 				function save(){
-					store.setItem('sweetDb.' + self.name, JSON.stringify(data));
+					var saveable = [];
+					for(var n =0; n< self.tables.length; n++){
+						saveable.push({name: self.tables[n].name, data: self.tables[n].toString()});
+					}
+
+					self.store.setItem('sweetDb.' + self.name, JSON.stringify(saveable));
+					saveable = null;
 				}
 
-				// Save this database on creation.
-				save();
-			};
+				function load(){
+					var d = self.store.getItem('sweetDb.' + self.name);
+					if (!d) return false;
 
-			return new Db();
-	};
+					var pd = JSON.parse(d);
+					if (pd === null || pd.length === 0) return false;
+					
+					var nd = [];
+					for(var n=0; n<pd.length;n++){
+						var t = new Table(pd[n].name);
+						t.fromJson(pd[n].data);
+						nd.push(t);
+					}
+
+					self.tables = nd;
+					return true;
+				}
+
+				if (!load()) save();
+		};
 });
