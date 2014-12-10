@@ -32,10 +32,10 @@ describe('Query', function(){
 		it('should return all the rows that match the query', function(){
 
 			var results = db.from('myTestTable').select(function(i){
-				return i.age === 21;
+				return i.age === 21 || i.name === 'Bingo';
 			});
 
-			results.length.should.eql(2);
+			results.length.should.eql(3);
 
 		});
 

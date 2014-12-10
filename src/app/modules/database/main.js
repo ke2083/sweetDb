@@ -14,6 +14,10 @@ define(['../table/main', '../query/main'], function(Table, Query){
 				self.store = storage||sessionStorage;
 
 				self.createTable = function(tName){
+					for(var n = 0;n<self.tables.length;n++){
+						if (self.tables[n].name === tName) throw new Error('Cannot insert duplicate table "' + tName + '" into database "' + self.name + '".');
+					}
+
 					var t = new Table(tName);
 					self.tables.push(t);
 					return t;
@@ -53,7 +57,7 @@ define(['../table/main', '../query/main'], function(Table, Query){
 
 					var pd = JSON.parse(d);
 					if (pd === null || pd.length === 0) return false;
-					
+
 					var nd = [];
 					for(var n=0; n<pd.length;n++){
 						var t = new Table(pd[n].name);
