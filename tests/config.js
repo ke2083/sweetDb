@@ -4,15 +4,8 @@ requirejs.config({
 	paths: {
 		'domReady': './bower_components/domReady/domReady',
 		'sweetdb': 'sweetdb',
-		'underscore': './bootstrapper',
 		'sweetHash': 'sweetdb'
-	},
-	shim: {
-		'underscore': {
-			exports: '_'
-		}
 	}
-
 
 });
 

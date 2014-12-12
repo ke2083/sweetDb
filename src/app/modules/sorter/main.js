@@ -4,14 +4,14 @@ define(function(){
 
 		orderBy: function(collection, property, comparison){
 			
-				var merge = function(left, right){
+				var merge = function(left, right, p, c){
 
 					 var result = [];
 					
 					 while(left.length !== 0 || right.length !== 0){
 						if (left.length !== 0 && right.length !== 0){
 							   // compare the first elements of the two sublists.
-								if (comparison(left[0][property], right[0][property])){
+								if (c(left[0][p], right[0][p])){
 									result.push(left[0]);
 									left.splice(0, 1);
 								}
@@ -32,7 +32,7 @@ define(function(){
 						return result;
 				};
 
-				var merge_sort = function(l){
+				var merge_sort = function(l, pr, co){
 					// http://en.wikipedia.org/wiki/Merge_sort
 					if (l.length <= 1) return l;
 
@@ -47,9 +47,9 @@ define(function(){
 						 right.push(l[y]);
 					}
 
-					left = merge_sort(left);
-					right = merge_sort(right);
-					return merge(left, right);
+					left = merge_sort(left, pr, co);
+					right = merge_sort(right, pr, co);
+					return merge(left, right, pr, co);
 				};
 
 				var arr = [];
@@ -59,7 +59,12 @@ define(function(){
 					}
 				}
 
-				return merge_sort(arr);
+				var finishedRes = merge_sort(arr, property, comparison);
+				finishedRes.orderBy = function(prop, comp){
+					return merge_sort(finishedRes, prop, comp);
+				};
+
+				return finishedRes;
 
 		}
 

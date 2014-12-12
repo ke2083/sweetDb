@@ -77,6 +77,22 @@ describe('Query', function(){
 
 		});
 
+
+		it('should be able to sort a sort', function(){
+			var t = db.openTable('myTestTable');
+			t.removeWhere(function(d){ return true; });
+			for (var i = 0; i < 100; i++){
+				t.add({name: 'Dinosaur' + i, age: Math.floor((Math.random() * 95000000) + 65000000)});
+			}
+
+			var start = new Date();
+			var results = db.from('myTestTable').select().orderBy('age', function(a, b){
+				return a < b;
+			}).orderBy('name', function(a, b){ return a > b; });
+
+		});
+
+
 	});
 
 });

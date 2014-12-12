@@ -105,6 +105,18 @@ t.removeWhere(function(d){
 t.removeDocument({name: 'test'})
 ```
 
+### Sorting a result set
+
+Sorting can be done on the results of a select.  The sort result will be an array, sorted based on the property specified and using the sort function given (since different properties might need different comparison methods).
+
+```javascript
+var result = db.from('My new table').select().orderBy('Firstname', function(a, b){
+  
+  return a < b;
+
+});
+```
+
 ## Storage
 
 When creating a new database, you can supply any object that offers a setItem, getItem and removeItem interface.
