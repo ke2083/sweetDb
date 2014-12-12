@@ -55,8 +55,10 @@ var t = db.openTable('My new table');
 
 ```javascript
 
-// Each document is a normal JSON object, and must be added against a unique key.
-t.add(1, {var1: 'string', var2: 'string2'});
+// Each document is a normal JSON object.  When added, the key will be returned.
+// The key is unique to each document, as it is a hash based on the document contents.
+// Two documents with identical contents cannot be stored.
+var k = t.add({var1: 'string', var2: 'string2'});
 
 ```
 
@@ -70,15 +72,37 @@ db.saveChanges();
 ### Find a document by ID
 
 ```javascript
-var result = db.from('My new table').find(45);
+var result = db.from('My new table').find('ad4914fe');
 ```
 
 ### Find documents by query
 
 ```javascript
+
+// This will return a JSON object with the primary key as the object key.
 var results = db.from('My new table').select(function(i){
 	return i.var1 === 'string'
 });
+```
+
+### Remove by key
+
+```javascript
+t.remove(id)
+```
+
+### Remove by query
+
+```javascript
+t.removeWhere(function(d){
+    return d.name === 'test';
+});
+```
+
+### Remove by document
+
+```javascript
+t.removeDocument({name: 'test'})
 ```
 
 ## Storage
@@ -95,19 +119,19 @@ I've only benchmarked on Chrome 39, Firefox 33 and IE 11 but (for 10,000 rows) t
 
 Chrome   | Firefox  |  IE
 ---------|:---------|:-----
-133ms    | 224ms    | 264ms
+78ms    | 52ms    | 85ms
 
 ### Find by key
 
 Chrome   | Firefox  |  IE
 ---------|:---------|:-----
-132ms    | 219ms    | 262ms
+67ms    | 51ms    | 86ms
 
 ### Find by query
 
 Chrome   | Firefox  |  IE
 ---------|:---------|:-----
-185ms    | 244ms    | 295ms
+111ms    | 84ms    | 142ms
 
 
 ## Compatibility
