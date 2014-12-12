@@ -95,19 +95,19 @@ I've only benchmarked on Chrome 39, Firefox 33 and IE 11 but (for 10,000 rows) t
 
 Chrome   | Firefox  |  IE
 ---------|:---------|:-----
-616ms    | 224ms    | 264ms
+133ms    | 224ms    | 264ms
 
 ### Find by key
 
 Chrome   | Firefox  |  IE
 ---------|:---------|:-----
-576ms    | 219ms    | 262ms
+132ms    | 219ms    | 262ms
 
 ### Find by query
 
 Chrome   | Firefox  |  IE
 ---------|:---------|:-----
-656ms    | 244ms    | 295ms
+185ms    | 244ms    | 295ms
 
 
 ## Compatibility

@@ -4,7 +4,8 @@ requirejs.config({
 	paths: {
 		'domReady': './bower_components/domReady/domReady',
 		'sweetdb': 'sweetdb',
-		'underscore': './bootstrapper'
+		'underscore': './bootstrapper',
+		'sweetHash': 'sweetdb'
 	},
 	shim: {
 		'underscore': {
@@ -15,9 +16,10 @@ requirejs.config({
 
 });
 
-require(['domReady!', 'sweetdb'], function(dr, sweetdb){
+require(['domReady!', 'sweetdb', 'sweetHash'], function(dr, sweetdb, sweetHash){
 
   window.sweetDb = sweetdb;
+  window.hash = sweetHash;
   mocha.run();
 
 });

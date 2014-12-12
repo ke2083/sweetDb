@@ -1,6 +1,9 @@
 requirejs.config({
 
-	baseUrl: '/app'
+	baseUrl: '/app',
+	paths: {
+		'sweetHash': './modules/sweethash/main'
+	}
 
 
 });

@@ -12,11 +12,11 @@ describe('Table', function(){
 			var db = dbms.create('testDb');
 			db.createTable('testTable');
 			var t = db.openTable('testTable');
-			t.add(1, {name: 'test'});
+			var k = t.add({name: 'test'});
 			var r = db.from('testTable').select();
 			r.length.should.eql(1);
-			r[0].key.should.eql(1);
-			r[0].document.name.should.eql('test');
+			r[k].should.be.ok;
+			r[k].name.should.eql('test');
 		});
 
 		it('should not create a table with a duplicate name', function(){
@@ -44,14 +44,66 @@ describe('Table', function(){
 			var db = dbms.create('testDb');
 			db.createTable('testTable');
 			var t = db.openTable('testTable');
-			t.add(1, {name: 'test'});
+			t.add({name: 'test'});
 			(function(){
-				t.add(1, {name: 'test2'});
-			}).should.throw('Cannot insert duplicate key "1" into table "testTable".');
+				t.add({name: 'test'});
+			}).should.throw('Cannot insert duplicate document into table "testTable".');
 
 		});
 
 	});
+
+	describe('#remove()', function(){
+
+		after(function(){
+			window.sweetDb.init().drop('testDb')
+		});
+
+		it('should remove an item by key', function(){
+
+			var dbms = window.sweetDb.init();
+			var db = dbms.create('testDb');
+			db.createTable('testTable');
+			var t = db.openTable('testTable');
+			var id = t.add({name: 'test'});
+			t.remove(id)
+			var r = db.from('testTable').select();
+			r.length.should.eql(0);
+
+		});
+
+		it('should remove an item by document', function(){
+
+			var dbms = window.sweetDb.init();
+			var db = dbms.create('testDb');
+			db.createTable('testTable');
+			var t = db.openTable('testTable');
+			var id = t.add({name: 'test'});
+			t.removeDocument({name: 'test'})
+			var r = db.from('testTable').select();
+			r.length.should.eql(0);
+
+		});
+
+		it('should remove an item by query', function(){
+
+			var dbms = window.sweetDb.init();
+			var db = dbms.create('testDb');
+			db.createTable('testTable');
+			var t = db.openTable('testTable');
+			var id = t.add({name: 'test'});
+			t.removeWhere(function(d){
+				return d.name === 'test';
+			});
+			
+			var r = db.from('testTable').select();
+			r.length.should.eql(0);
+
+		});
+
+	});
+
+
 
 });
 

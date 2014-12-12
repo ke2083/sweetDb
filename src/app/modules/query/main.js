@@ -7,24 +7,25 @@ define(function(){
 		self.data = table;
 
 		self.select = function(query){
-			if (query === null || query === undefined) return self.data.rows;
+			var count = 0;
+			var res  = {};
+			if (query === null || query === undefined) {
+				query = function(obj){ return true; };
+			}
 
-			var res  = [];
-			for(var n = 0; n<self.data.rows.length; n++){
-				if (query(self.data.rows[n].document) === true){
-					res.push(self.data.rows[n]);
+			for(var key in self.data.rows){
+				if (self.data.rows.hasOwnProperty(key) && query(self.data.rows[key])){
+					res[key] = self.data.rows[key];
+					count++;
 				}
 			}
 
+			res.length = count;
 			return res;
 		};	
 
 		self.find = function(key){
-			for(var n = 0; n < self.data.rows.length; n++){
-				if (self.data.rows[n].key === key) return self.data.rows[n].document;
-			}
-
-			return null;
+			return self.data.rows[key];
 		};
 	};
 

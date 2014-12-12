@@ -76,7 +76,7 @@ describe('Database', function(){
 			var dbms = window.sweetDb.init();
 			var db = dbms.create('testDb');
 			var t = db.createTable('testTable');
-			t.add(1, {name: 'New'});
+			t.add({name: 'New'});
 			db.saveChanges();
 
 			var dbms2 = window.sweetDb.init();

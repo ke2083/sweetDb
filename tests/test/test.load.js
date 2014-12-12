@@ -9,8 +9,8 @@ describe('Load', function(){
 		var db = window.sweetDb.init().create('testDb');
 		var start = new Date();
 		var t = db.createTable('myTestTable');
-		for(var n = 0; n< 10000;n++){
-			t.add(n, {name: 'Test' + n, val: Math.floor((Math.random() * 100) + 1)});
+		for(var n = 0; n < 10000;n++){
+			t.add({name: 'Test' + n, val: Math.floor((Math.random() * 100) + 1)});
 		}
 
 		var timeTaken = (new Date()).getTime() - start.getTime();
@@ -23,11 +23,12 @@ describe('Load', function(){
 		var db = window.sweetDb.init().create('testDb');
 		var start = new Date();
 		var t = db.createTable('myTestTable');
+		var h = 0;
 		for(var n = 0; n< 10000;n++){
-			t.add(n, {name: 'Test' + n, val: Math.floor((Math.random() * 100) + 1)});
+			h = t.add({name: 'Test' + n, val: Math.floor((Math.random() * 100) + 1)});
 		}
 
-		var result = db.from('myTestTable').find(999);
+		var result = db.from('myTestTable').find(h);
 		var timeTaken = (new Date()).getTime() - start.getTime();
 		timeTaken.should.be.lessThan(1000);
 		result.should.be.ok;
@@ -40,7 +41,7 @@ describe('Load', function(){
 		var start = new Date();
 		var t = db.createTable('myTestTable');
 		for(var n = 0; n< 10000;n++){
-			t.add(n, {name: 'Test' + n, val: Math.floor((Math.random() * 100) + 1)});
+			t.add({name: 'Test' + n, val: Math.floor((Math.random() * 100) + 1)});
 		}
 
 		db.saveChanges();
