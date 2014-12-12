@@ -113,7 +113,7 @@ This means that localStorage and sessionStorage are supported out-of-the-box, bu
 
 ## Performance
 
-I've only benchmarked on Chrome 39, Firefox 33 and IE 11 but (for 10,000 rows) the results were:
+I've only benchmarked on Chrome 39, Firefox 33 and IE 11 but (for 100,000 rows) the results were:
 
 ### Insert
 
@@ -132,6 +132,12 @@ Chrome   | Firefox  |  IE
 Chrome   | Firefox  |  IE
 ---------|:---------|:-----
 111ms    | 84ms    | 142ms
+
+### Sorting
+
+Chrome   | Firefox  | IE
+---------|:---------|:---
+887ms    | *44s*(!) | *2.2s*
 
 
 ## Compatibility

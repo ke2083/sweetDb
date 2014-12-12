@@ -1,10 +1,11 @@
-define(function(){
+define(['../sorter/main'], function(sorter){
 
 	'use strict';
 
 	return function(table){
 		var self = this;
 		self.data = table;
+		self.sorter = sorter;
 
 		self.select = function(query){
 			var count = 0;
@@ -20,7 +21,12 @@ define(function(){
 				}
 			}
 
+			var sort = function(property, comparison){
+				return self.sorter.orderBy(res, property, comparison);
+			};
+
 			res.length = count;
+			res.orderBy = sort;
 			return res;
 		};	
 
