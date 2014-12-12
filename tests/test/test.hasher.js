@@ -13,11 +13,11 @@ describe('Hash', function(){
 
 		});
 
-		it('should be unique over 100,000 entries', function(){
+		it('should be unique over 10,000 entries', function(){
 			this.timeout(0);
 			var hashes = {};
 
-			for(var i = 0; i < 100000; i++){
+			for(var i = 0; i < 10000; i++){
 				var wordLength = Math.floor((Math.random() * 20) + 1)
 				var word = [];
 				for(var l  = 0; l < wordLength; l++){

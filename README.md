@@ -125,31 +125,31 @@ This means that localStorage and sessionStorage are supported out-of-the-box, bu
 
 ## Performance
 
-I've only benchmarked on Chrome 39, Firefox 33 and IE 11 but (for 100,000 rows) the results were:
+I've only benchmarked on Chrome 39, Firefox 33 and IE 11 but (for 10,000 rows) the results were:
 
 ### Insert
 
 Chrome   | Firefox  |  IE
 ---------|:---------|:-----
-78ms    | 52ms    | 85ms
+66ms    | 47ms    | 87ms
 
 ### Find by key
 
 Chrome   | Firefox  |  IE
 ---------|:---------|:-----
-67ms    | 51ms    | 86ms
+69ms    | 47ms    | 84ms
 
 ### Find by query
 
 Chrome   | Firefox  |  IE
 ---------|:---------|:-----
-111ms    | 84ms    | 142ms
+108ms    | 74ms    | 136ms
 
 ### Sorting
 
 Chrome   | Firefox  | IE
 ---------|:---------|:---
-887ms    | *44s*(!) | *2.2s*
+170ms    | 277ms    | 162ms
 
 
 ## Compatibility

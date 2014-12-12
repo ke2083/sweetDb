@@ -18,6 +18,13 @@ define(['sweetHash'], function(hasher){
 	 		delete self.rows[key];
 	 	};
 
+		self.bulkAdd = function(values){
+			var data = JSON.parse(values);
+			for(var i = 0; i < data.length; i++){
+				self.add(data[i]);
+			}
+		};
+
 	 	self.removeWhere = function(query){
 	 		var matches = [];
 	 		for(var key in self.rows){

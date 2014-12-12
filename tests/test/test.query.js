@@ -62,7 +62,7 @@ describe('Query', function(){
 			this.timeout(0);
 			var t = db.openTable('myTestTable');
 			t.removeWhere(function(d){ return true; });
-			for (var i = 0; i < 100000; i++){
+			for (var i = 0; i < 10000; i++){
 				t.add({name: 'Dinosaur' + i, age: Math.floor((Math.random() * 95000000) + 65000000)});
 			}
 
